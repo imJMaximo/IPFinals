@@ -2,6 +2,9 @@ import javax.swing.JFrame;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import java.io.*;
+import java.net.URL;
+import javax.sound.sampled.*;
 
 public class MyFrame extends JFrame implements KeyListener{
 
@@ -9,6 +12,23 @@ public class MyFrame extends JFrame implements KeyListener{
 
 	public MyFrame(){
 		this.myDraw = new Draw();
+
+		try {
+         // Open an audio input stream.
+         URL url = this.getClass().getClassLoader().getResource("Our-Mountain_v003.mp3");
+         AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+         // Get a sound clip resource.
+         Clip clip = AudioSystem.getClip();
+         // Open audio clip and load samples from the audio input stream.
+         clip.open(audioIn);
+         clip.start();
+      } catch (UnsupportedAudioFileException e) {
+         e.printStackTrace();
+      } catch (IOException e) {
+         e.printStackTrace();
+      } catch (LineUnavailableException e) {
+         e.printStackTrace();
+      }
 	}
 
 	public void keyPressed(KeyEvent e){
@@ -56,10 +76,11 @@ public class MyFrame extends JFrame implements KeyListener{
 	public void keyTyped(KeyEvent e){
 
 	}
+   
 
 	public static void main(String[] args) {
 		MyFrame gameFrame = new MyFrame();
-		
+
 		gameFrame.setSize(870, 490);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.setVisible(true);
