@@ -4,31 +4,15 @@ import java.awt.*;
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
-import javax.sound.sampled.*;
 
 public class MyFrame extends JFrame implements KeyListener{
 
 	Draw myDraw = new Draw();
+	Sound sound = new Sound();
 
 	public MyFrame(){
 		this.myDraw = new Draw();
-
-		try {
-         // Open an audio input stream.
-         URL url = this.getClass().getClassLoader().getResource("Our-Mountain_v003.mp3");
-         AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-         // Get a sound clip resource.
-         Clip clip = AudioSystem.getClip();
-         // Open audio clip and load samples from the audio input stream.
-         clip.open(audioIn);
-         clip.start();
-      } catch (UnsupportedAudioFileException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      } catch (LineUnavailableException e) {
-         e.printStackTrace();
-      }
+		this.sound = new Sound();
 	}
 
 	public void keyPressed(KeyEvent e){
@@ -67,6 +51,10 @@ public class MyFrame extends JFrame implements KeyListener{
 		}
 		else if(e.getKeyCode() == KeyEvent.VK_ENTER){
 			myDraw.spawnEnemy();
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_P){
+			sound.play();
+			System.out.println("play sound");
 		}
 	}
 
