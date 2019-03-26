@@ -431,6 +431,12 @@ public class Draw extends JComponent{
 		g.setColor(Color.RED);
 		g.fillRect(x+15,y+2,10,2);
 
+		g.setColor(Color.WHITE);
+		g.drawString("Instructions:", 15, 20 );
+		g.drawString("Press P to Play Sound", 20, 33);
+		g.drawString("Press ENTER for enemy spawn", 20, 46);
+		g.drawString("Press A, S, D, W, Z, and SPACE for attack", 20, 59);
+
 		for(int c = 0; c < monsters.length; c++){
 			if(monsters[c]!=null){
 				// character grid for monsters
