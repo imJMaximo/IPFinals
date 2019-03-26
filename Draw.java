@@ -426,6 +426,10 @@ public class Draw extends JComponent{
 		super.paintComponent(g);
 		g.drawImage(backgroundImage, 0, 0, this);
 		g.drawImage(image, x, y, this);	
+		g.setColor(Color.BLUE);
+		g.fillRect(x+15,y,25,2);
+		g.setColor(Color.RED);
+		g.fillRect(x+15,y+2,10,2);
 
 		for(int c = 0; c < monsters.length; c++){
 			if(monsters[c]!=null){
